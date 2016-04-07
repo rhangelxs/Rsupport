@@ -1,0 +1,12 @@
+Package: mypackage
+Title: Usefull functions
+Version: 0.1
+Authors@R: c(person("Alex", "Developer", role = c("aut", "cre"),
+    email = "n71user@gmail.com"))
+Description: TODO
+Depends:
+    R (>= 3.0.1)
+Imports:
+    Hmisc, pander
+License: TODO
+#Suggests: 
