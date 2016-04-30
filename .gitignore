@@ -1,9 +1,7 @@
 
 .RData
-
 .Rhistory
 .Rbuildignore
-
 .Rproj.user
-
 mypackage.Rproj
+packrat/lib*/
