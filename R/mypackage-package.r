@@ -420,3 +420,21 @@ rev <- function(input, length) {
   }
   sapply(input, fun)
 }
+
+#' @export to_lavaan
+to_lavaan <- function(f2c, name=NA) {
+  f2c <- data.frame(t(f2c))
+  factors <- rownames(f2c)
+  rows <- c()
+  for (factor in factors) {
+    row <- f2c[factor,]==1
+    row <- row[,row==1,drop=F]
+    row <- paste(factor, paste(colnames(row), collapse = "+"), sep="=~")
+    rows <- c(rows, row)
+  }
+  if (!is.na(name)) {
+    row <- paste(name, paste(rownames(f2c), collapse = "+"), sep="=~")
+    rows <- c(rows, row)
+  }
+  return(paste0(rows, collapse = "\n"))
+} 
