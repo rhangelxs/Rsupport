@@ -438,3 +438,44 @@ to_lavaan <- function(f2c, name=NA) {
   }
   return(paste0(rows, collapse = "\n"))
 } 
+
+
+#' @export plot_extra
+#' @import semTools
+plot_extra <- function(fit, what="mod", whatLabels="std", align="vertical", residuals = F, intercepts=FALSE, ask=F, include=1,
+                                layout= "tree3"
+                                , mar=c(1.5,1,2.5,1)
+                                , nCharNodes=0
+                                , sizeLat=20, sizeLat2=11
+                                , edge.label.cex=1
+                                , label.cex=1
+                                , label.scale = TRUE
+                                , structural = F
+                                , ...) {
+  
+  object <- semPlot::semPlotModel(fit)
+  
+  # GroupVars <- object@Vars
+  # nodeLabels[object@Vars$name %in% GroupVars$name]
+  
+  manNames <- object@Vars$name[object@Vars$manifest]
+  latNames <- object@Vars$name[!object@Vars$manifest]
+  if (structural == TRUE) {
+    Labels <- latNames
+  } else {
+    Labels <- c(manNames,latNames)
+  }
+  nodeLabels <- replace_vocabul(Labels)
+  semPlot::semPaths(fit, what=what, whatLabels=whatLabels, residuals = residuals, intercepts=intercepts, ask=ask, include=include,
+                    layout = layout
+                    , mar = mar
+                    , nCharNodes = nCharNodes
+                    , sizeLat = sizeLat, sizeLat2 = sizeLat2
+                    , edge.label.cex = edge.label.cex
+                    , label.cex = label.cex
+                    , label.scale = label.scale
+                    , nodeLabels = nodeLabels
+                    , structural = structural
+                    , ...
+  )  
+}
