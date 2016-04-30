@@ -7,6 +7,8 @@ Description: TODO
 Depends:
     R (>= 3.0.1)
 Imports:
-    Hmisc, pander
+    Hmisc,
+    pander
 License: TODO
 #Suggests: 
+RoxygenNote: 5.0.1
