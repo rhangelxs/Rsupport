@@ -439,9 +439,19 @@ to_lavaan <- function(f2c, name=NA) {
   return(paste0(rows, collapse = "\n"))
 } 
 
+#' @export replace_vocabul
+replace_vocabul <- function(x) {
+  tryCatch({
+    for (row in rownames(vocablurary)) {
+      x <- gsub(row, vocablurary[row,"full"], x, fixed = T)
+    }
+    }, error=function(w) {print("vocablurary not found!")}
+  )
+  return(x)
+}
 
 #' @export plot_extra
-#' @import semTools
+#' @import semPlot
 plot_extra <- function(fit, what="mod", whatLabels="std", align="vertical", residuals = F, intercepts=FALSE, ask=F, include=1,
                                 layout= "tree3"
                                 , mar=c(1.5,1,2.5,1)
