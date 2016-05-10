@@ -2,11 +2,10 @@
 #'
 #' @name mypackage
 #' @docType package
-#' @export cross.cor
 #' @export corstarsl
 #' @export multilevel_parameters
-#' @import Hmisc pander
 
+#' @export cross.cor
 cross.cor <- function(x, y, type = "pearson") {
   Rnew <- corstarsl(data.frame(x, y), type)
   # x - number of columns
@@ -451,7 +450,6 @@ replace_vocabul <- function(x) {
 }
 
 #' @export plot_extra
-#' @import semPlot
 plot_extra <- function(fit, what="mod", whatLabels="std", align="vertical", residuals = F, intercepts=FALSE, ask=F, include=1,
                                 layout= "tree3"
                                 , mar=c(1.5,1,2.5,1)
