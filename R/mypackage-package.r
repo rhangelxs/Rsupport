@@ -487,3 +487,14 @@ plot_extra <- function(fit, what="mod", whatLabels="std", align="vertical", resi
                     , ...
   )  
 }
+
+#' @export replace_eff
+replace_eff <- function(eff, what, on, newlevels = NULL) {
+  if (!is.null(newlevels)) {
+    eff$variables[[what]]$levels <- newlevels
+    levels(eff$x[[what]]) <- newlevels
+  }
+  names(eff$x)[names(eff$x) == what] <- on
+  names(eff$variables)[names(eff$variables) == what] <- on
+  return(eff)
+}
